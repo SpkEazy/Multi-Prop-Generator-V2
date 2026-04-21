@@ -512,7 +512,7 @@
       _brokerId:     raw.brokerId     || null,
       _auctionDate:  raw.auctionDate  || null,
       _auctionTime:  raw.auctionTime  || null,
-      _sourceUrl:    raw.sourceUrl    || null
+      _sourceUrl:    raw.sourceUrl    || null,
 
       // address intentionally omitted — preserved by form
     };
