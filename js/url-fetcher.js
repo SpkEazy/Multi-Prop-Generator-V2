@@ -1,24 +1,19 @@
 // =====================
 // URL FETCHER (CORS-safe, best-effort)
 // =====================
-// Tries to fetch a listing URL via public CORS proxies.
-// Returns { ok: true, html: "...", proxyUsed: "..." } on success.
-// Returns { ok: false, reason: "..." } on failure.
+// Tries multiple public CORS proxies. Returns the first success.
+// Never throws — failures return { ok:false, reason, details }.
 //
-// IMPORTANT: Because this is a static GitHub Pages site, direct
-// fetches to auctioninc.co.za will fail with CORS errors. We rely
-// on public proxies which CAN and DO go down or rate-limit.
-// Callers MUST handle failure gracefully and fall back to the
-// paste-source workflow.
+// Callers MUST handle failure by falling back to pasted source.
 //
 // Exposed as window.AI_fetchListingUrl.
 
 (function () {
   'use strict';
 
-  // Public CORS proxies (first that works wins).
-  // These are best-effort — any of them may disappear.
-  // Order matters: most reliable first.
+  const FETCH_TIMEOUT_MS = 15000;
+
+  // Ordered, most-reliable-first. Any can break; all are best-effort.
   const PROXY_STRATEGIES = [
     {
       name: 'allorigins-raw',
@@ -26,7 +21,7 @@
       extract: async (res) => await res.text()
     },
     {
-      name: 'allorigins-json',
+      name: 'allorigins-get',
       build: (url) => 'https://api.allorigins.win/get?url=' + encodeURIComponent(url),
       extract: async (res) => {
         const data = await res.json();
@@ -34,13 +29,21 @@
       }
     },
     {
+      name: 'codetabs',
+      build: (url) => 'https://api.codetabs.com/v1/proxy/?quest=' + encodeURIComponent(url),
+      extract: async (res) => await res.text()
+    },
+    {
+      name: 'thingproxy',
+      build: (url) => 'https://thingproxy.freeboard.io/fetch/' + url,
+      extract: async (res) => await res.text()
+    },
+    {
       name: 'corsproxy-io',
       build: (url) => 'https://corsproxy.io/?' + encodeURIComponent(url),
       extract: async (res) => await res.text()
     }
   ];
-
-  const FETCH_TIMEOUT_MS = 12000;
 
   function withTimeout(promise, ms) {
     return new Promise((resolve, reject) => {
@@ -70,10 +73,6 @@
     }
   }
 
-  /**
-   * Fetch URL via chain of proxies. Resolves with first success.
-   * Never throws — returns failure object instead.
-   */
   async function fetchListingUrl(url) {
     if (!isValidUrl(url)) {
       return { ok: false, reason: 'Invalid URL' };
@@ -87,11 +86,10 @@
         const res = await withTimeout(
           fetch(proxyUrl, {
             method: 'GET',
-            // Do not send credentials — proxies don't want them
             credentials: 'omit',
-            // Hint to cache where possible
             cache: 'no-store',
-            redirect: 'follow'
+            redirect: 'follow',
+            headers: { 'Accept': 'text/html,*/*' }
           }),
           FETCH_TIMEOUT_MS
         );
@@ -109,13 +107,11 @@
         }
 
         if (!looksLikeHtml(text)) {
-          // Proxy returned something, but not HTML (e.g. error page)
           attempts.push(`${strategy.name}: non-HTML response`);
           continue;
         }
 
-        return { ok: true, html: text, proxyUsed: strategy.name };
-
+        return { ok: true, html: text, proxyUsed: strategy.name, attempts };
       } catch (err) {
         attempts.push(`${strategy.name}: ${err && err.message ? err.message : err}`);
         continue;
