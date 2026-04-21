@@ -1,0 +1,319 @@
+/* ============================================================
+   AuctionInc Multi-Prop Generator — Stage 1 Stylesheet
+   Preserves original layout & preview box sizing exactly.
+   Adds: minor polish for the new Paste Listing card and
+   the broker "inferred" badge. No breaking changes.
+   ============================================================ */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
+  background: #fff;
+  color: #1a1a1a;
+}
+
+/* --------- Form labels --------- */
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* --------- Inputs, selects, textareas --------- */
+input,
+select,
+textarea {
+  margin-left: 10px;
+  padding: 8px;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900; /* Roboto Black */
+  text-transform: none; /* change to 'uppercase' if desired */
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #E31F2A;
+  box-shadow: 0 0 0 2px rgba(227, 31, 42, 0.15);
+}
+
+/* --------- Generic buttons --------- */
+button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background: #f4f4f4;
+  border-radius: 4px;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+button:hover {
+  background: #e8e8e8;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+/* --------- Headings --------- */
+h2 {
+  margin-top: 40px;
+}
+
+/* --------- Preview blocks --------- */
+.preview-block {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 30px;
+  background: #f9f9f9;
+  max-width: 100%; /* allow full-width for large templates */
+  overflow-x: auto;
+}
+
+/* This is the container that receives the template HTML (via JS) */
+.preview-box {
+  position: relative;
+  background: white;
+  padding: 0;
+  overflow: hidden;
+
+  /* Prevent rendering glitches */
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Optional: size previews for display (won't affect download) */
+#social-preview > [id^="capture-container"] {
+  width: 1200px;
+  height: 1200px;
+}
+
+#newsletter-preview > [id^="capture-container"] {
+  width: 1080px;
+  height: 1527px;
+}
+
+#multi-flyer-preview > [id^="capture-container"] {
+  width: 1080px;
+  height: 1920px;
+}
+
+/* --------- Wide textareas for address / features --------- */
+#address,
+#feat1,
+#feat2,
+#feat3 {
+  width: 600px;   /* Adjust width as needed */
+}
+
+/* ============================================================
+   STAGE 1 — Paste Listing card styling
+   Scoped to new IDs/classes. Cannot affect existing layout.
+   ============================================================ */
+
+.listing-extract-card {
+  border: 2px solid #E31F2A;
+  background: #fff7f7;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  border-radius: 6px;
+  max-width: 820px;
+  box-sizing: border-box;
+}
+
+.listing-extract-card h2 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  color: #E31F2A;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.listing-extract-card p.hint {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  color: #555;
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+#listing-text {
+  width: 100%;
+  max-width: 100%;
+  min-height: 140px;
+  margin-left: 0;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  box-sizing: border-box;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+#listing-text:focus {
+  outline: none;
+  border-color: #E31F2A;
+  box-shadow: 0 0 0 2px rgba(227, 31, 42, 0.15);
+}
+
+.extract-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#btn-extract {
+  background: #E31F2A;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 900;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  transition: background 0.15s ease;
+}
+
+#btn-extract:hover {
+  background: #c81a24;
+}
+
+#btn-extract:disabled {
+  background: #e2868b;
+  cursor: wait;
+}
+
+#btn-extract-clear {
+  background: #666;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  font-weight: 900;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  transition: background 0.15s ease;
+}
+
+#btn-extract-clear:hover {
+  background: #444;
+}
+
+#extract-status {
+  font-size: 13px;
+  color: #333;
+  font-weight: normal;
+  line-height: 1.3;
+}
+
+#extract-status.success {
+  color: #117a2f;
+  font-weight: 900;
+}
+
+#extract-status.warning {
+  color: #b06400;
+  font-weight: 900;
+}
+
+#extract-status.error {
+  color: #c81a24;
+  font-weight: 900;
+}
+
+/* --------- Broker "Inferred" badge --------- */
+.broker-inferred-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #117a2f;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-left: 8px;
+  vertical-align: middle;
+  letter-spacing: 0.4px;
+}
+
+.broker-inferred-pill.none {
+  background: #b06400;
+}
+
+/* ============================================================
+   Responsive polish (non-breaking)
+   ============================================================ */
+
+@media (max-width: 900px) {
+  body {
+    padding: 12px;
+  }
+
+  input,
+  select,
+  textarea,
+  #address,
+  #feat1,
+  #feat2,
+  #feat3 {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .listing-extract-card {
+    padding: 14px;
+  }
+
+  .preview-block {
+    padding: 12px;
+  }
+
+  .preview-panel {
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  label {
+    font-size: 16px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  #btn-extract,
+  #btn-extract-clear {
+    flex: 1 1 auto;
+    min-width: 120px;
+  }
+}

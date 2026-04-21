@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multi-Property Auction Flyer</title>
+  <meta name="viewport" content="width=1754, height=2480, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet"> <!-- Link to import Roboto Black font -->
+
+  <style>
+    body {
+
+            margin: 0;
+            padding: 0;
+            background-color: white;
+          }
+
+
+
+          .overlay-image_background {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 1765px;
+            height: 2491px;
+            z-index: 2; /* Set a higher z-index to place the property image below other elements */
+            object-fit: cover;
+          }
+
+
+
+          .overlay-image_property {
+            position: absolute;
+            top: 36px;
+            left: 36px;
+            width: 1682px;
+            height: 1050px;
+            border: 5px solid #ffffff; /* Thin white border */
+            z-index: 3; /* Set a higher z-index to place the property image below other elements */
+            object-fit: cover;
+          }
+
+          .overlay-image_broker-phone {
+            position: absolute;
+            top: 1405px;
+            left: 30px;
+            width: 530px;
+            height: auto;
+            z-index: 4;
+          }
+
+
+    .overlay-image_location-icon {
+      position: absolute;
+      top: 1949px;
+      left: 615px;
+      width: 85px;
+      height: auto;
+      z-index: 9;
+    }
+
+
+    .overlay-image_red-banner {
+      position: absolute;
+      top: 36px;
+      left: 1032px;
+      width: 546px;
+      height: 430px;
+      z-index: 6; /* Adjusted z-index */
+    }
+
+    .overlay-image_AI-footer {
+      position: absolute;
+      top: 1006px;
+      left: 790px;
+      width: 935px;
+      height: 363px;
+      z-index: 5;
+    }
+
+    .overlay-image_blue-overlay {
+      position: absolute;
+      top: 824px;
+      left: 38px;
+      width: 753px;
+      height: 540px;
+      z-index: 8; /* Set a higher z-index than the property image */
+      mix-blend-mode: multiply; /* Apply multiply blending effect */
+    }
+
+
+
+
+    .textbox_1_Red_Banner,
+    .textbox_2_Red_Banner {
+      position: absolute;
+      padding: 10px; /* Padding around text */
+      font-family: 'Roboto', sans-serif; /* Roboto Black font */
+      width: 450px; /* Width matches the red tag */
+      height: 116px; /* Height set to accommodate two lines */
+      font-weight: 900; /* Roboto Black font weight */
+      color: white; /* Text color */
+      text-transform: uppercase;
+      white-space: nowrap; /* Prevent wrapping */
+      overflow: hidden;
+      z-index: 7; /* Set a higher z-index than the red tag */
+      /* border: 1px solid white; /* Thin white border */
+      display: flex; /* Enable flexbox */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+    }
+
+    .textbox_1_Red_Banner span,
+    .textbox_2_Red_Banner span {
+      text-align: center; /* Center text horizontally */
+      width: 100%; /* Ensure text spans the full width */
+      box-sizing: border-box; /* Include padding in width calculation */
+      font-size: 100px; /* Initial font size */
+    }
+
+    .textbox_1_Blue_Overlay{
+      position: absolute;
+      padding: 10px; /* Padding around text */
+      font-family: 'Roboto', sans-serif; /* Roboto Black font */
+      width: 423px; /* Width matches the red tag */
+      height: 80px; /* Height set to accommodate two lines */
+      font-weight: 900; /* Roboto Black font weight */
+      color: rgb(227, 31, 42); /* Text color */
+      text-transform: uppercase;
+      white-space: nowrap; /* Prevent wrapping */
+      overflow: hidden;
+      z-index: 11; /* Set a higher z-index than the red tag */
+     /*border: 1px solid white; /* Thin white border */
+      display: flex; /* Enable flexbox */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+    }
+
+    .textbox_2_Blue_Overlay,
+    .textbox_3_Blue_Overlay {
+      position: absolute;
+      padding: 10px; /* Padding around text */
+      font-family: 'Roboto', sans-serif; /* Roboto Black font */
+      width: 665px; /* Width matches the red tag */
+      height: 140px; /* Height set to accommodate two lines */
+      font-weight: 900; /* Roboto Black font weight */
+      color: white; /* Text color */
+      text-transform: uppercase;
+      white-space: nowrap; /* Prevent wrapping */
+      overflow: hidden;
+      z-index: 12; /* Set a higher z-index than the red tag */
+      /*border: 1px solid white; /* Thin white border */
+      display: flex; /* Enable flexbox */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+    }
+
+
+    .textbox_1_Blue_Overlay span {
+      text-align: left; /* Center text horizontally */
+      width: 100%; /* Ensure text spans the full width */
+      box-sizing: border-box; /* Include padding in width calculation */
+      font-size: 100px; /* Initial font size */
+    }
+
+    .textbox_2_Blue_Overlay span,
+    .textbox_3_Blue_Overlay span {
+      text-align: left; /* Center text horizontally */
+      width: 100%; /* Ensure text spans the full width */
+      box-sizing: border-box; /* Include padding in width calculation */
+      font-size: 100px; /* Initial font size */
+    }
+
+
+
+    .textbox_Feature_1,
+     .textbox_Feature_2,
+     .textbox_Feature_3 {
+       position: absolute;
+       padding: 10px; /* Padding around text */
+       font-family: 'Roboto', sans-serif; /* Roboto Black font */
+       width: 1139px; /* Width matches the red tag */
+       height: 111px; /* Height set to accommodate two lines */
+       font-weight: 900; /* Roboto Black font weight */
+       color: white; /* Text color */
+       white-space: nowrap; /* Prevent wrapping */
+       overflow: hidden;
+       z-index: 10; /* Set a higher z-index than the red tag */
+       /*border: 1px solid white; /* Thin white border */
+       text-transform: uppercase;
+       display: flex; /* Enable flexbox */
+       justify-content: flex-end; /* Align text from the right */
+       align-items: center; /* Center vertically */
+     }
+
+     .textbox_Feature_1 span,
+     .textbox_Feature_2 span,
+     .textbox_Feature_3 span {
+       text-align: right; /* Align text from the right */
+       width: 100%; /* Ensure text spans the full width */
+       box-sizing: border-box; /* Include padding in width calculation */
+       font-size: 100px; /* Initial font size */
+     }
+
+
+
+
+
+
+
+    .textbox_3{
+      position:absolute;
+      padding:10px;
+      font-family: 'Roboto', sans-serif;
+      font-weight:900;
+      color:white;
+      z-index:11;
+    }
+
+    .textbox_4{
+      position:absolute;
+      font-family: 'Roboto', sans-serif;
+      font-weight:900;
+      color:white;
+      white-space: nowrap;
+      z-index: 13;
+    }
+
+    .textbox_5{
+      position:absolute;
+      font-family: 'Roboto', sans-serif;
+      font-weight:900;
+      color: rgb(227, 31, 42);
+      z-index:14;
+    }
+
+
+    .DATE{
+    position: absolute;
+    padding: 10px; /* Padding around text */
+    font-family: 'Roboto', sans-serif; /* Roboto Black font */
+    width: 862px; /* Width matches the red tag */
+    height: 111px; /* Height set to accommodate two lines */
+    font-weight: 900; /* Roboto Black font weight */
+    color: white; /* Text color */
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden;
+    z-index: 15; /* Set a higher z-index than the red tag */
+    /*border: 1px solid white; /* Thin white border */
+    text-transform: uppercase;
+    display: flex; /* Enable flexbox */
+    justify-content: flex-end; /* Align text from the right */
+    align-items: center; /* Center vertically */
+  }
+
+  .DATE span {
+    text-align: right; /* Align text from the right */
+    width: 100%; /* Ensure text spans the full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+    font-size: 53px; /* Initial font size */
+  }
+
+
+
+  .ADDRESS {
+    position: absolute;
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    width: 1000px;
+    height: 85px;
+    font-weight: 900;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 15;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .ADDRESS span {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 53px;  /* start reasonably */
+    text-align: right;
+  }
+
+
+  </style>
+</head>
+
+<body>
+<div id="capture-container-multi_flyer" style="width: 1754px; height: 2480px; position: relative; overflow: hidden;">
+
+
+ <!-- Your HTML content goes here -->
+ <!-- Place embedded image from InDesign -->
+
+   <img src="assets/background-image.jpg" class="overlay-image_background" alt="Background Image">
+   <canvas id="flyer-property-canvas" class="overlay-image_property" width="1682" height="1050"></canvas>
+   <img src="assets/broker-phone.png" class="overlay-image_broker-phone" alt="Broker Phone">
+   <img src="assets/red-banner.png" class="overlay-image_red-banner" alt="Red Banner">
+   <img src="assets/AI-footer.png" class="overlay-image_AI-footer" alt="AI Footer">
+   <img src="assets/blue-overlay.png" class="overlay-image_blue-overlay" alt="Blue Overlay">
+   <img src="assets/location-icon.png" class="overlay-image_location-icon" alt="Location Icon">
+
+    <div class="textbox_3" id="textbox_3" style="top: 1350px; left: 615px;font-size:53px">
+<p>INVITATION TO ATTEND OUR</P>
+    </div>
+
+    <div class="DATE" id="DATE" style="top: 1840px; left: 840px; font-size:53px">
+<span>{{date}}</span>
+    </div>
+
+    <div class="ADDRESS" id="ADDRESS" style="top: 1930px; left: 840px; font-size:50px">
+    <p>{{address}}</p>
+        </div>
+
+    <div class="textbox_4" id="textbox_4" style="top: 1355px; left: 615px;font-size:130px">
+    <p>MULTI-PROPERTY</P>
+    </div>
+
+    <div class="textbox_5" id="textbox_5" style="top: 1340px; left: 615px;font-size:257px">
+    <p>AUCTION</P>
+    </div>
+
+      <div class="textbox_1_Red_Banner" id="textbox_1_Red_Banner" style="top: 36px; left: 1070.5px;">
+        <span>{{tag1}}</span>
+      </div>
+      <div class="textbox_2_Red_Banner" id="textbox_2_Red_Banner" style="top: 151px; left: 1070.5px;">
+        <span>{{tag2}}</span>
+      </div>
+
+
+  <div class="textbox_1_Blue_Overlay" id="textbox_1_Blue_Overlay" style= "top:990px; left: 70px;">
+    <span>{{suburb}}</span>
+  </div>
+
+  <div class="textbox_2_Blue_Overlay" id="textbox_2_Blue_Overlay" style="top:1070px; left: 70px;">
+    <span>{{subheadline}}</span>
+  </div>
+  <div class="textbox_3_Blue_Overlay" id="textbox_3_Blue_Overlay" style="top:1205px; left: 70px;">
+    <span>{{subheadline2}}</span>
+  </div>
+
+
+
+  <div class="textbox_Feature_1" id="textbox_Feature_1" style="top: 2020px; left: 560px; color: rgb(227,31,42)">
+    <span>{{feat1}}</span>
+  </div>
+  <div class="textbox_Feature_2" id="textbox_Feature_2" style="top: 2127px; left: 560px;">
+    <span>{{feat2}}</span>
+  </div>
+  <div class="textbox_Feature_3" id="textbox_Feature_3" style="top: 2234px; left: 560px;">
+    <span>{{feat3}}</span>
+  </div>
+
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Commercial Social Post 2</title>
+  <meta name="viewport" content="width=1200px, height=1200px, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+  <style>
+    body { margin:0; padding:0; background:#fff; }
+
+    .overlay-gradient{
+      position:absolute;
+      top:-323px; left:-966px;
+      width:3141px; height:1128px;
+      background:linear-gradient(to bottom, rgba(0,0,0,0.99), transparent);
+      mix-blend-mode:multiply;
+      transform:rotate(0deg) scale(0.36);
+      opacity:0.80;
+      z-index:3;
+    }
+
+    .overlay-image_AI-icon{
+      position:absolute;
+      top:967px; left:957px;
+      width:196px; height:auto;
+      z-index:11;
+    }
+
+    /* ✅ BLUE PANEL GROUP */
+    .stats-panel{
+      position:absolute;
+      top:887px; left:50px;
+      width:270px; height:205px;
+      z-index:11;
+    }
+
+    .stats-panel .blue-overlay-image{
+      position:absolute;
+      inset:0;
+      width:270px; height:205px;
+      z-index:0;
+      mix-blend-mode:multiply;
+    }
+
+    .stats-panel .buttons{
+      position:absolute;
+      top:16px; left:21px;
+      width:72px; height:auto;
+      z-index:1;
+    }
+
+    /* ✅ Labels (GLA / ERF) — no padding so they align with circles */
+    .stats-panel .text_Point_1,
+    .stats-panel .text_Point_2{
+      position:absolute;
+      font-family:'Roboto',sans-serif;
+      font-weight:900;
+      color:#000;
+      font-size:24px;
+      text-transform:uppercase;
+      z-index:2;
+      margin:0;
+      padding:0;            /* ✅ IMPORTANT */
+      text-align:center;
+    }
+
+    .stats-panel .text_Point_1{ top:40px; left:32px; }
+    .stats-panel .text_Point_2{ top:141px; left:32px; }
+    .stats-panel .text_Point_1 p,
+    .stats-panel .text_Point_2 p{ margin:0; }
+
+    /* ✅ VALUE BOXES (IDs preserved for builder.js) */
+    .stats-panel .textbox_Point_1,
+    .stats-panel .textbox_Point_2{
+      position:absolute;
+      font-family:'Roboto',sans-serif;
+      font-weight:900;
+      color:#fff;
+      white-space:nowrap;
+      overflow:hidden;
+      z-index:2;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:10px 16px;     /* ✅ breathing room left/right */
+      text-align:center;
+      box-sizing:border-box; /* ✅ keep padding inside width */
+    }
+
+    /* ✅ FORCE position + controlled width (space from right edge) */
+    .stats-panel #textbox_Point_1{
+      top: 15px !important;
+      left: 108px !important;
+      width: 136px !important;
+      height: 49px !important;
+      box-sizing: border-box !important;
+    }
+
+    .stats-panel #textbox_Point_2{
+      top: 108px !important;
+      left: 108px !important;
+      width: 136px !important;
+      height: 90px !important;
+      box-sizing: border-box !important;
+    }
+
+    .stats-panel .textbox_Point_1 span,
+    .stats-panel .textbox_Point_2 span{
+      width:100%;
+      display:block;
+      text-align:center;
+      font-size:100px; /* builder.js will resize */
+      line-height:1;
+    }
+
+    .text_Header{
+      position:absolute;
+      top:-60px; left:50px;
+      padding:10px;
+      font-family:'Roboto',sans-serif;
+      font-weight:900;
+      color:#fff;
+      font-size:95px;
+      z-index:10;
+    }
+
+    .textbox_Header_2{
+      position:absolute;
+      top:135px; left:50px;
+      padding:10px;
+      font-family:'Roboto',sans-serif;
+      width:800px; height:100px;
+      font-weight:900;
+      color:#fff;
+      white-space:nowrap;
+      overflow:hidden;
+      z-index:7;
+      text-transform:uppercase;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .textbox_Header_2 span{
+      width:100%;
+      text-align:left;
+      font-size:100px;
+      box-sizing:border-box;
+    }
+
+    .textbox_1_Red_Tag,
+    .textbox_2_Red_Tag{
+      position:absolute;
+      padding:10px;
+      font-family:'Roboto',sans-serif;
+      font-weight:900;
+      color:#fff;
+      white-space:nowrap;
+      z-index:7;
+      text-transform:uppercase;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      transform:rotate(43deg);
+    }
+
+    .textbox_1_Red_Tag{ top:99px; left:910px; width:260px; height:90px; }
+    .textbox_2_Red_Tag{ top:148px; left:772px; width:433px; height:90px; }
+
+    .textbox_1_Red_Tag span,
+    .textbox_2_Red_Tag span{
+      width:100%;
+      text-align:center;
+      font-size:100px;
+      box-sizing:border-box;
+    }
+
+    .red-rectangle{
+      position:absolute;
+      top:1092px; left:50px;
+      width:270px; height:60px;
+      background:rgb(227,31,42);
+      z-index:6;
+    }
+
+    .textbox_Red_Rectangle{
+      position:absolute;
+      top:1082px; left:46px;
+      padding:10px;
+      font-family:'Roboto',sans-serif;
+      width:255px; height:60px;
+      font-weight:900;
+      color:#fff;
+      white-space:nowrap;
+      overflow:hidden;
+      z-index:8;
+      text-transform:uppercase;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .textbox_Red_Rectangle span{
+      width:100%;
+      text-align:center;
+      font-size:100px;
+      box-sizing:border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="capture-container-dual" style="width:1200px;height:1200px;position:relative;overflow:hidden;background:white;">
+    <div style="position:absolute; top:40px; left:40px; width:1130px; height:1130px; overflow:hidden;">
+      <canvas id="social-property-canvas" width="3390" height="3390" style="width:1130px;height:1130px;"></canvas>
+    </div>
+
+    <div class="overlay-gradient"></div>
+    <img src="assets/AI-icon.png" class="overlay-image_AI-icon" alt="AI Icon">
+
+    <div class="stats-panel">
+      <img src="assets/blue-overlay-image.jpg" class="blue-overlay-image" alt="Blue Overlay">
+      <img src="assets/Buttons.png" class="buttons" alt="Buttons">
+
+      <div class="text_Point_1"><p>GLA</p></div>
+      <div class="textbox_Point_1" id="textbox_Point_1"><span>{{gla}}</span></div>
+
+      <div class="text_Point_2"><p>ERF</p></div>
+      <div class="textbox_Point_2" id="textbox_Point_2"><span>{{erf}}</span></div>
+    </div>
+
+    <div class="red-rectangle"></div>
+
+    <div class="text_Header" id="text_Header"><p>ON AUCTION</p></div>
+
+    <div class="textbox_Header_2" id="textbox_Header_2"><span>{{headline}}</span></div>
+
+    <div class="textbox_1_Red_Tag" id="textbox_1_Red_Tag"><span>{{tag1}}</span></div>
+    <div class="textbox_2_Red_Tag" id="textbox_2_Red_Tag"><span>{{tag2}}</span></div>
+
+    <div class="textbox_Red_Rectangle" id="textbox_Red_Rectangle"><span>{{suburb}}</span></div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

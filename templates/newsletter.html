@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Newsletter E-Card Alex</title>
+  <meta name="viewport" content="width=600px, height=300px, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet"> <!-- Link to import Roboto Black font -->
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: white;
+    }
+
+    .image-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;      /* Define your desired visible width */
+      height: 300px;     /* Define your desired visible height */
+      overflow: hidden;  /* This hides any part of the image that overflows */
+      z-index: 2;
+    }
+
+    .overlay-image_property {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;         /* Maintains proportion */
+      object-position: top;      /* Prioritize top crop */
+      background-color: white;
+    }
+
+
+
+    .overlay-image_red-tag1 {
+      position: absolute;
+      top: 0px;
+      left: -30px;
+      width: 160px;
+      height: 150px;
+      z-index: 4; /* Adjusted z-index */
+
+    }
+
+    .overlay-image_Broker_Photo {
+      position: absolute;
+      top: 210px;
+      left: 313px;
+      width: 71px;
+      height: auto;
+      z-index: 11;
+    }
+
+    .overlay-image_Calender_Icon {
+      position: absolute;
+      top: 149px;
+      left: 313px;
+      width: 20px;
+      height: auto;
+      z-index: 11;
+    }
+
+
+    .textbox_1_Red_Tag {
+      position: absolute;
+      padding: 10px; /* Padding around text */
+      font-family: 'Roboto', sans-serif; /* Roboto Black font */
+      width: 87px; /* Width matches the red tag */
+      height: 22px; /* Height set to accommodate two lines */
+      font-weight: 900; /* Roboto Black font weight */
+      color: white; /* Text color */
+      white-space: nowrap; /* Prevent wrapping */
+      z-index: 7; /* Set a higher z-index than the red tag */
+      text-transform: uppercase;
+      display: flex; /* Enable flexbox */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      transform: rotate(-43deg); /* Rotate the text */
+    }
+
+    .textbox_2_Red_Tag {
+      position: absolute;
+      padding: 10px; /* Padding around text */
+      font-family: 'Roboto', sans-serif; /* Roboto Black font */
+      width: 125px; /* Width matches the red tag */
+      height: 22px; /* Height set to accommodate two lines */
+      font-weight: 900; /* Roboto Black font weight */
+      color: white; /* Text color */
+      text-transform: uppercase;
+      white-space: nowrap; /* Prevent wrapping */
+      z-index: 7; /* Set a higher z-index than the red tag */
+      display: flex; /* Enable flexbox */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      transform: rotate(-43deg); /* Rotate the text */
+    }
+
+    .textbox_1_Red_Tag span,
+    .textbox_2_Red_Tag span {
+      text-align: center; /* Center text horizontally */
+      width: 100%; /* Ensure text spans the full width */
+      box-sizing: border-box; /* Include padding in width calculation */
+      font-size: 100px; /* Initial font size */
+    }
+
+    .textbox_CITY {
+      position: absolute;
+      padding: 10px; /* Padding around text */
+      font-family: 'Roboto', sans-serif; /* Roboto Black font */
+      width: 193px; /* Width matches the red tag */
+      height: 20px; /* Height set to accommodate two lines */
+      font-weight: 900; /* Roboto Black font weight */
+      color: black; /* Text color */
+      font-size: 15px;
+      white-space: nowrap; /* Prevent wrapping */
+      z-index: 8; /* Set a higher z-index than the red tag */
+
+
+      display: flex; /* Enable flexbox */
+      text-align: left;
+      align-items: center; /* Center vertically */
+
+    }
+
+    .textbox_SUBURB {
+      position: absolute;
+      padding: 10px; /* Padding around text */
+      font-family: 'Roboto', sans-serif; /* Roboto Black font */
+      width: 193px; /* Width matches the red tag */
+      height: 20px; /* Height set to accommodate two lines */
+      font-weight: 900; /* Roboto Black font weight */
+      color: RGB(227,31,42); /* Text color */
+      font-size: 15px;
+      white-space: nowrap; /* Prevent wrapping */
+      z-index: 8; /* Set a higher z-index than the red tag */
+
+text-transform: uppercase;
+      display: flex; /* Enable flexbox */
+      text-align: left;
+      align-items: center; /* Center vertically */
+
+    }
+
+
+
+
+
+
+      .textbox_Property_Heading {
+        position: absolute;
+        padding: 10px; /* Padding around text */
+        font-family: 'Roboto', sans-serif; /* Roboto Black font */
+        width: 269px; /* Width matches the red tag */
+        height: 60px; /* Height set to accommodate two lines */
+        font-weight: 900; /* Roboto Black font weight */
+        color: black; /* Text color */
+        white-space: nowrap; /* Prevent wrapping */
+        overflow: hidden;
+        z-index: 8; /* Set a higher z-index than the red tag */
+
+text-transform: uppercase;
+        display: flex; /* Enable flexbox */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+
+      }
+
+      .textbox_Property_Heading span {
+        text-align: left; /* Center text horizontally */
+        width: 100%; /* Ensure text spans the full width */
+        box-sizing: border-box; /* Include padding in width calculation */
+        font-size: 100px; /* Initial font size */
+      }
+
+      .textbox_Features {
+           position: absolute;
+           padding: 8px; /* Padding around text */
+           font-family: 'Roboto Flex', sans-serif; /* Use Roboto Flex font */
+           width: 250px; /* Width matches the red tag */
+           height: 50px; /* Height set to accommodate three lines */
+           font-weight: 400; /* Roboto Flex regular weight */
+           color: black; /* Text color */
+           font-size: 10px;
+           z-index: 8; /* Set a higher z-index than the red tag */
+           display: flex; /* Enable flexbox */
+           flex-direction: column; /* Arrange lines vertically */
+           align-items: flex-start; /* Align items to the start of the flex container */
+           line-height: 1.5; /* Adjust line spacing (e.g., 1.5 for 150% of the font size) */
+         }
+
+         .textbox_Features span {
+           white-space: nowrap; /* Prevent wrapping */
+         }
+
+
+         .textbox_Contact_Details {
+            position: absolute;
+            padding: 10px; /* Padding around text */
+            font-family: 'Roboto Flex', sans-serif; /* Use Roboto Flex font */
+            width: 165px; /* Width matches the red tag */
+            height: 50px; /* Height set to accommodate three lines */
+            font-weight: 400; /* Roboto Flex regular weight */
+            color: black; /* Text color */
+            font-size: 10px;
+            z-index: 8; /* Set a higher z-index than the red tag */
+            display: flex; /* Enable flexbox */
+            flex-direction: column; /* Arrange lines vertically */
+            align-items: flex-start; /* Align items to the start of the flex container */
+          }
+
+          .textbox_Contact_Details span {
+            white-space: nowrap; /* Prevent wrapping */
+          }
+
+
+      .textbox_DATE {
+        position: absolute;
+        padding: 10px; /* Padding around text */
+        font-family: 'Roboto', sans-serif; /* Roboto Black font */
+        width: 193px; /* Width matches the red tag */
+        height: 10px; /* Height set to accommodate two lines */
+        font-weight: 900; /* Roboto Black font weight */
+        color: black; /* Text color */
+        font-size: 9px;
+        white-space: nowrap; /* Prevent wrapping */
+        z-index: 8; /* Set a higher z-index than the red tag */
+
+        text-transform: uppercase;
+        display: flex; /* Enable flexbox */
+        text-align: left;
+        align-items: center; /* Center vertically */
+
+      }
+
+
+      .textbox_Textbox_Enquire {
+        position: absolute;
+        padding: 10px; /* Padding around text */
+        font-family: 'Roboto', sans-serif; /* Roboto Black font */
+        width: 60px; /* Width matches the red tag */
+        height: 2px; /* Height set to accommodate two lines */
+        font-weight: 400; /* Roboto Black font weight */
+        color: rgb(227,31,42); /* Text color */
+        font-size: 8px;
+        white-space: nowrap; /* Prevent wrapping */
+        z-index: 8; /* Set a higher z-index than the red tag */
+        border: 1px solid rgb(227,31,42); /* Thin white border */
+        text-transform: uppercase;
+        display: flex; /* Enable flexbox */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+      }
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <div id="capture-container-newsletter" style="width: 600px; height: 300px; position: relative; overflow: visible;">
+  <div style="position: absolute; top: 10px; left: 10px; right: 0;">
+
+
+  <!-- Your HTML content goes here -->
+  <!-- Place embedded image from InDesign -->
+  <div class="image-wrapper">
+    <canvas id="property-canvas" width="900" height="900" style="width: 300px; height: 300px;"></canvas> <!-- ✅ Updated -->
+  </div>
+
+
+
+  <img src="assets/red-tag1.png" class="overlay-image_red-tag1" alt="Red Tag1">
+  <img src="assets/broker-photo.png" class="overlay-image_Broker_Photo" alt="Broker Photo">
+    <img src="assets/calender-icon.png" class="overlay-image_Calender_Icon" alt="Calender Icon">
+
+    <div class="textbox_Textbox_Enquire" id="textbox_Textbox_Enquire" style="top: 181px; left: 313px;">
+      <span>enquire</span>
+    </div>
+
+    <div class="textbox_Property_Heading" id="textbox_Property_Heading" style="top: 15px; left: 300px;">
+      <span>{{headline}}</span>
+    </div>
+
+    <div class="textbox_1_Red_Tag" id="textbox_1_Red_Tag" style="top: 15px; left:-14px;">
+      <span>{{tag1}}</span>
+    </div>
+
+    <div class="textbox_2_Red_Tag" id="textbox_2_Red_Tag" style="top:30px; left: -21px;">
+      <span>{{tag2}}</span>
+    </div>
+
+
+    <div class="textbox_CITY" id="textbox_CITY" style="top: -5px; left: 300px;">
+      <span>{{city}}</span>
+    </div>
+
+    <div class="textbox_SUBURB" id="textbox_SUBURB" style="top: 13px; left: 300px;">
+      <span>{{suburb}}</span>
+    </div>
+
+    <div class="textbox_Features" style="top: 85px; left: 311px;">
+      <span>• {{feat1}} </span>
+      <span>• {{feat2}}</span>
+      <span>• {{feat3}}  </span>
+    </div>
+
+
+    <div class="textbox_DATE" id="textbox_DATE" style="top: 144px; left: 330px;">
+      <span>{{date}}</span>
+    </div>
+
+    <div class="textbox_Contact_Details" style="top: 211px; left: 380px;">
+      <span>ALEX KRAUSE</span>
+      <span>078 549 2029</span>
+      <span>alex@auctioninc.co.za</span>
+    </div>
+
+
+  </div>
+
+
+</body>
+</html>

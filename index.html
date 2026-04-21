@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Multi-Prop Generator</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
+
+  <!-- ✅ Use the SAME html2canvas build as the working system -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <script src="https://unpkg.com/docx@8.3.0/build/index.umd.js"></script>
+
+  <style>
+    .preview-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .preview-box {
+      background: #f4f4f4;
+      border: 2px solid #ccc;
+      padding: 10px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+      overflow: auto;
+    }
+
+    /* ============================================
+       STAGE 1 — Paste Listing section styling
+       Non-breaking additions. Scoped to new IDs.
+       ============================================ */
+    .listing-extract-card {
+      border: 2px solid #E31F2A;
+      background: #fff7f7;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      border-radius: 6px;
+      max-width: 820px;
+    }
+    .listing-extract-card h2 {
+      margin: 0 0 8px 0;
+      font-size: 20px;
+      color: #E31F2A;
+    }
+    .listing-extract-card p.hint {
+      margin: 0 0 10px 0;
+      font-size: 13px;
+      color: #555;
+      font-weight: normal;
+    }
+    #listing-text {
+      width: 100%;
+      max-width: 100%;
+      min-height: 140px;
+      padding: 10px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      box-sizing: border-box;
+      resize: vertical;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .extract-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    #btn-extract {
+      background: #E31F2A;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-weight: 900;
+      font-family: 'Roboto', sans-serif;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    #btn-extract:hover {
+      background: #c81a24;
+    }
+    #btn-extract-clear {
+      background: #666;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      font-weight: 900;
+      font-family: 'Roboto', sans-serif;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    #btn-extract-clear:hover {
+      background: #444;
+    }
+    #extract-status {
+      font-size: 13px;
+      color: #333;
+      font-weight: normal;
+    }
+    #extract-status.success { color: #117a2f; }
+    #extract-status.warning { color: #b06400; }
+    #extract-status.error { color: #c81a24; }
+
+    .broker-inferred-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      background: #117a2f;
+      color: #fff;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .broker-inferred-pill.none {
+      background: #b06400;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ✅ STAGE 1: Paste Listing card (additive, does not replace anything) -->
+  <div class="listing-extract-card">
+    <h2>Paste Listing (optional)</h2>
+    <p class="hint">
+      Paste the full listing text (from PDF, website, or Word). Click Extract to auto-populate
+      the fields below. You can edit everything before downloading. The Address field is never
+      overwritten by the extractor.
+    </p>
+    <textarea id="listing-text" spellcheck="true"
+              placeholder="Paste listing text here..."></textarea>
+    <div class="extract-actions">
+      <button type="button" id="btn-extract">Extract & Populate</button>
+      <button type="button" id="btn-extract-clear">Clear</button>
+      <span id="extract-status"></span>
+    </div>
+  </div>
+
+  <form id="input-form" spellcheck="true" lang="en-GB">
+
+    <!-- ✅ Broker selector kept as safety fallback + manual override -->
+    <label>Broker:
+      <select id="broker">
+        <option value="alex-krause" selected>Alex Krause</option>
+        <option value="gary-brower">Gary Brower</option>
+        <option value="bongane-khumalo">Bongane Khumalo</option>
+        <option value="cliff-matshatsha">Cliff Matshatsha</option>
+        <option value="daniel-wachenheimer">Daniel Wachenheimer</option>
+        <option value="dean-doucha">Dean Doucha</option>
+        <option value="elki-medalie">Elki Medalie</option>
+        <option value="doron-sacks">Doron Sacks</option>
+        <option value="george-merricks">George Merricks</option>
+        <option value="gerhard-venter">Gerhard Venter</option>
+        <option value="jenny-pillay">Jenny Pillay</option>
+        <option value="jessica-beyers-lahner">Jessica Beyers-Lahner</option>
+        <option value="jodi-bedil">Jodi Bedil</option>
+        <option value="jodi-frankel">Jodi Frankel</option>
+        <option value="keith-nkosi">Keith Nkosi</option>
+        <option value="luanda-tlhotlhalemaje">Luanda Tlhotlhalemaje</option>
+        <option value="nic-brett">Nic Brett</option>
+        <option value="reece-louw">Reece Louw</option>
+        <option value="reshma-sookran">Reshma Sookran</option>
+        <option value="shlomo-hecht">Shlomo Hecht</option>
+        <option value="sim-mthembu">Sim Mthembu</option>
+        <option value="stuart-holliman">Stuart Holliman</option>
+        <option value="thabani-ncube">Thabani Ncube</option>
+        <option value="yoni-dadon">Yoni Dadon</option>
+      </select>
+      <span id="broker-inferred-badge"></span>
+    </label><br>
+
+    <label>Headline: <textarea id="headline" rows="1" spellcheck="true">Lux 6-Bed Penthouse</textarea></label><br>
+    <label>Subheadline: <textarea id="subheadline" rows="1" spellcheck="true">Lux 6-Bed</textarea></label><br>
+    <label>Subheadline 2: <textarea id="subheadline2" rows="1" spellcheck="true">Penthouse</textarea></label><br>
+    <label>City: <textarea id="city" rows="1" spellcheck="true">Cape Town</textarea></label><br>
+    <label>Suburb: <textarea id="suburb" rows="1" spellcheck="true">Sandton</textarea></label><br>
+    <label>Tagline 1: <textarea id="tag1" rows="1" spellcheck="true">Breathtaking</textarea></label><br>
+    <label>Tagline 2: <textarea id="tag2" rows="1" spellcheck="true">Views</textarea></label><br>
+
+    <!-- ✅ No hardcoded value. JS will set today if empty -->
+    <label>Select Date: <input type="date" id="date-picker"></label><br>
+
+    <label>Select Time:
+      <select id="time-picker">
+        <option value="09:00">09:00</option>
+        <option value="09:30">09:30</option>
+        <option value="10:00">10:00</option>
+        <option value="10:30" selected>10:30</option>
+        <option value="11:00">11:00</option>
+        <option value="11:30">11:30</option>
+        <option value="12:00">12:00</option>
+        <option value="12:30">12:30</option>
+        <option value="14:00">14:00</option>
+        <option value="14:30">14:30</option>
+        <option value="18:00">18:00</option>
+        <option value="18:30">18:30</option>
+      </select>
+    </label><br>
+
+    <label>Address: <textarea id="address" rows="1" spellcheck="true">41 West Street, Houghton Estate</textarea></label><br>
+    <label>Feature 1: <textarea id="feat1" rows="1" spellcheck="true">6 Bedrooms + 4 Bathrooms (main en-suite)</textarea></label><br>
+    <label>Feature 2: <textarea id="feat2" rows="1" spellcheck="true">Home Office | Enclosed Entertainment Patio</textarea></label><br>
+    <label>Feature 3: <textarea id="feat3" rows="1" spellcheck="true">Expansive Garden, Sparkling Pool + 2 Garages</textarea></label><br>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; max-width: 750px; margin-bottom: 10px;">
+      <label style="display: flex; flex-direction: column;">
+        ERF Size:
+        <input type="text" id="erf-size" style="width: 100%;">
+      </label>
+      <label style="display: flex; flex-direction: column;">
+        GLA:
+        <input type="text" id="gla" style="width: 100%;">
+      </label>
+    </div>
+
+    <label>Upload Property Image: <input type="file" id="property-img"></label><br>
+  </form>
+
+  <!-- ✅ Buttons MUST be type="button" so the form never submits -->
+  <button type="button" onclick="downloadWordDoc()">Download Word Summary</button>
+
+  <h2>Previews</h2>
+  <div class="preview-panel">
+    <div class="preview-block">
+      <h3>Social Design</h3>
+      <button type="button" onclick="generateAndDownload('social')">Download Social</button>
+      <div id="social-preview" class="preview-box"></div>
+    </div>
+
+    <div class="preview-block">
+      <h3>Commercial ERF Social</h3>
+      <button type="button" onclick="generateAndDownload('commercial_erf')">Download ERF Social</button>
+      <div id="erf-preview" class="preview-box"></div>
+    </div>
+
+    <div class="preview-block">
+      <h3>Commercial GLA Social</h3>
+      <button type="button" onclick="generateAndDownload('commercial_gla')">Download GLA Social</button>
+      <div id="gla-preview" class="preview-box"></div>
+    </div>
+
+    <div class="preview-block">
+      <h3>Commercial ERF + GLA Social</h3>
+      <button type="button" onclick="generateAndDownload('commercial_dual')">Download ERF+GLA Social</button>
+      <div id="dual-preview" class="preview-box"></div>
+    </div>
+
+    <div class="preview-block">
+      <h3>Newsletter Design</h3>
+      <button type="button" onclick="generateAndDownload('newsletter')">Download Newsletter</button>
+      <div id="newsletter-preview" class="preview-box"></div>
+    </div>
+
+    <div class="preview-block">
+      <h3>Multi-Property Flyer</h3>
+      <button type="button" onclick="generateAndDownload('multi_flyer')">Download Multi-Flyer</button>
+      <div id="multi-flyer-preview" class="preview-box"></div>
+    </div>
+  </div>
+
+  <!-- ✅ Load brokers module BEFORE builder.js so BROKERS global is available -->
+  <script src="js/brokers.js?v=1"></script>
+  <script src="js/extractor.js?v=1"></script>
+  <script src="js/transformer.js?v=1"></script>
+  <script src="js/builder.js?v=2"></script>
+  <script src="js/extract-ui.js?v=1"></script>
+</body>
+</html>
