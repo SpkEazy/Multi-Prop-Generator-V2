@@ -16,7 +16,7 @@
     "bongane-khumalo":      { name: "Bongane Khumalo",      phone: "073 785 5100", email: "bongane@auctioninc.co.za" },
     "cliff-matshatsha":     { name: "Cliff Matshatsha",     phone: "082 099 8692", email: "cliff@auctioninc.co.za" },
     "daniel-wachenheimer":  { name: "Daniel Wachenheimer",  phone: "082 740 2856", email: "daniel@auctioninc.co.za" },
-    "dean-doucha":          { name: "Dean Doucha",          phone: "082 374 5565", email: "dean@auctioninc.co.za" },
+    "dean-nathan":          { name: "Dean Nathan",          phone: "082 359 4848", email: "deanN@auctioninc.co.za" },
     "elki-medalie":         { name: "Elki Medalie",         phone: "083 764 5370", email: "elki@auctioninc.co.za" },
     "doron-sacks":          { name: "Doron Sacks",          phone: "082 550 7081", email: "doron@auctioninc.co.za" },
     "george-merricks":      { name: "George Merricks",      phone: "082 859 9303", email: "george@auctioninc.co.za" },
