@@ -29,6 +29,7 @@
     "luanda-tlhotlhalemaje":{ name: "Luanda Tlhotlhalemaje",phone: "071 904 4061", email: "luanda@skyriseproperties.co.za" },
     "natasha-du-toit":      { name: "Natasha Du Toit",      phone: "066 296 6420", email: "natasha@auctioninc.co.za" },
     "nic-brett":            { name: "Nic Brett",            phone: "078 330 7523", email: "nic@auctioninc.co.za" },
+    "pnina-spinner":        { name: "Pnina Spinner",        phone: "073 029 4341", email: "pnina@auctioninc.co.za" },
     "reece-louw":           { name: "Reece Louw",           phone: "076 393 1131", email: "reece@auctioninc.co.za" },
     "reshma-sookran":       { name: "Reshma Sookran",       phone: "071 876 6524", email: "reshma@auctioninc.co.za" },
     "shlomo-hecht":         { name: "Shlomo Hecht",         phone: "073 791 7967", email: "shlomo@auctioninc.co.za" },
