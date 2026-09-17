@@ -26,7 +26,7 @@
     "jodi-bedil":           { name: "Jodi Bedil",           phone: "076 637 1273", email: "jodib@auctioninc.co.za" },
     "jodi-frankel":         { name: "Jodi Frankel",         phone: "082 441 8409", email: "jodif@auctioninc.co.za" },
     "keith-nkosi":          { name: "Keith Nkosi",          phone: "081 828 1817", email: "keith@auctioninc.co.za" },
-    "kelsie-barlow": { name: "Kelsie Barlow", phone: "081 073 2670", email: "kelsie@auctioninc.co.za" },
+    "kelsie-barlow":        { name: "Kelsie Barlow",        phone: "081 073 2670", email: "kelsie@auctioninc.co.za" },
     "luanda-tlhotlhalemaje":{ name: "Luanda Tlhotlhalemaje",phone: "071 904 4061", email: "luanda@skyriseproperties.co.za" },
     "natasha-du-toit":      { name: "Natasha Du Toit",      phone: "066 296 6420", email: "natasha@auctioninc.co.za" },
     "nic-brett":            { name: "Nic Brett",            phone: "078 330 7523", email: "nic@auctioninc.co.za" },
