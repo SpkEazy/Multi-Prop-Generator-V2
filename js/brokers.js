@@ -33,6 +33,7 @@
     "pnina-spinner":        { name: "Pnina Spinner",        phone: "073 029 4341", email: "pnina@auctioninc.co.za" },
     "reece-louw":           { name: "Reece Louw",           phone: "076 393 1131", email: "reece@auctioninc.co.za" },
     "reshma-sookran":       { name: "Reshma Sookran",       phone: "071 876 6524", email: "reshma@auctioninc.co.za" },
+    "saul-novick":          { name: "Saul Novick",          phone: "073 475 2104", email: "saul@auctioninc.co.za" },
     "shlomo-hecht":         { name: "Shlomo Hecht",         phone: "073 791 7967", email: "shlomo@auctioninc.co.za" },
     "sim-mthembu":          { name: "Sim Mthembu",          phone: "063 829 7431", email: "simphiwe@auctioninc.co.za" },
     "stuart-holliman":      { name: "Stuart Holliman",      phone: "067 373 9239", email: "stuart@auctioninc.co.za" },
